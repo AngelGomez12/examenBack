@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@Table(name = "Odontologo")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Odontologo {

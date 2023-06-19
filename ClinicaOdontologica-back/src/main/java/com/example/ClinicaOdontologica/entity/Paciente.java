@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@Table(name = "Paciente")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Paciente {
@@ -38,8 +39,9 @@ public class Paciente {
     @JsonProperty("fechaIngreso")
     private LocalDate fechaIngreso;
 
-    @Column
-    @JsonProperty("odontologo")
+    @ManyToOne
+    @JoinColumn(name = "odontologo_id")
+    @JsonProperty("odontolgo")
     private Odontologo odontologo;
 
 }

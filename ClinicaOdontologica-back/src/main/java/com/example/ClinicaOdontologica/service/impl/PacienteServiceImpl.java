@@ -3,10 +3,13 @@ package com.example.ClinicaOdontologica.service.impl;
 import com.example.ClinicaOdontologica.entity.Paciente;
 import com.example.ClinicaOdontologica.repository.IPacienteRepository;
 import com.example.ClinicaOdontologica.service.IPacienteService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
 public class PacienteServiceImpl implements IPacienteService {
 
     private final IPacienteRepository pacienteRepository;

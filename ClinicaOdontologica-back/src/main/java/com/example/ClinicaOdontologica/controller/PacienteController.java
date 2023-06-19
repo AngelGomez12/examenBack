@@ -1,6 +1,8 @@
 package com.example.ClinicaOdontologica.controller;
 
+import com.example.ClinicaOdontologica.entity.Odontologo;
 import com.example.ClinicaOdontologica.entity.Paciente;
+import com.example.ClinicaOdontologica.service.IOdontologoService;
 import com.example.ClinicaOdontologica.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +19,7 @@ public class PacienteController {
 
     @Autowired
     private PacienteServiceImpl pacienteService;
+    private IOdontologoService odontologoService;
 
 
     @GetMapping
@@ -35,18 +38,17 @@ public class PacienteController {
 
     @PostMapping("/newPaciente")
     public Paciente createPaciente(@RequestBody Paciente newPaciente){
+
         Paciente paciente = new Paciente();
-        paciente.setId(newPaciente.getId());
         paciente.setName(newPaciente.getName());
         paciente.setLastName(newPaciente.getLastName());
         paciente.setEmail(newPaciente.getEmail());
         paciente.setDNI(newPaciente.getDNI());
         paciente.setFechaIngreso(newPaciente.getFechaIngreso());
-        paciente.setOdontologo(newPaciente.getOdontologo());
 
-        Paciente savePaciente = pacienteService.savePaciente(paciente);
+        Paciente savedPaciente = pacienteService.savePaciente(newPaciente);
 
-        return ResponseEntity.ok(savePaciente).getBody();
+        return savedPaciente;
     }
 
     @DeleteMapping("/delete/{id}")
