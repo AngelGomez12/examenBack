@@ -7,12 +7,16 @@ function Details() {
     const { id } = useParams();
     const [odontologo, setOdontologo] = useState({});
     useEffect(() => {
+        let isMounted = true;
         getOdontologoById(id).then((data) => {
             setOdontologo(data);
             console.log(data);
         }).catch((error) => {
             console.error(error);
         });
+        return () => {
+            isMounted = false;
+        };
     }, [id]);
 
     return (
