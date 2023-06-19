@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getOdontologos } from '../service/OdontologoService'
+import { Link } from 'react-router-dom'
 
 export const Cards = () => {
 
@@ -15,6 +16,7 @@ export const Cards = () => {
                 console.error(error);
             });
     }, [])
+
     return (
         <div>
             <ul>
@@ -24,6 +26,7 @@ export const Cards = () => {
                             <li>{odontologo.name}</li>
                             <li>{odontologo.lastName}</li>
                             <li>{odontologo.matricula}</li>
+                            <Link to={`/details/${odontologo.id}`}>Detalles</Link>
                         </div>
                     )
                 }

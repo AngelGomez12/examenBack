@@ -2,7 +2,7 @@ import React from 'react'
 import { Cards } from '../components/Cards'
 import { Header } from '../components/Header'
 
-export const Home = () => {
+const Home = () => {
   return (
     <div>
       <Header />
@@ -10,3 +10,5 @@ export const Home = () => {
     </div>
   )
 }
+
+export default Home
