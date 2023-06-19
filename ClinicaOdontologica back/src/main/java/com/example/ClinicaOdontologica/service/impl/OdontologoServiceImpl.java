@@ -48,7 +48,7 @@ public class OdontologoServiceImpl implements IOdontologoService {
     }
 
     @Override
-    public String updateOdontologo(Odontologo odontologoNew) {
-        return null;
+    public Odontologo updateOdontologo(Odontologo odontologoNew) {
+        return odontologoRepository.save(odontologoNew);
     }
 }

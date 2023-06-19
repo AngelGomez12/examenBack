@@ -15,5 +15,5 @@ public interface IOdontologoService {
 
     String deleteOdontologo(Long id);
 
-    String updateOdontologo(Odontologo odontologoNew);
+    Odontologo updateOdontologo(Odontologo odontologoNew);
 }

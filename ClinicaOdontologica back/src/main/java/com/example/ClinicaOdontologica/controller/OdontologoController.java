@@ -52,4 +52,25 @@ public class OdontologoController {
         return odontologoService.deleteOdontologo(id);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateOdontologo(@PathVariable Long id, @RequestBody Odontologo odontologoNew) {
+        Optional<Odontologo> existingOdontologoOptional = odontologoService.findOdontologoById(id);
+
+        if (existingOdontologoOptional.isPresent()) {
+            Odontologo existingOdontologo = existingOdontologoOptional.get();
+
+            // Actualiza los atributos del odontólogo existente con los valores proporcionados
+            existingOdontologo.setName(odontologoNew.getName());
+            existingOdontologo.setLastName(odontologoNew.getLastName());
+            existingOdontologo.setMatricula(odontologoNew.getMatricula());
+
+            Odontologo updatedOdontologo = odontologoService.saveOdontologo(existingOdontologo);
+
+            return ResponseEntity.ok("Odontólogo actualizado con éxito.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }
