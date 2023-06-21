@@ -2,32 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { getOdontologos } from '../service/OdontologoService'
 import { Link } from 'react-router-dom'
 
-export const Cards = () => {
+export const Cards = (props) => {
 
-    const [odontologos, setOdontologos] = useState([])
     useEffect(() => {
-        let isMounted = true; // Variable de estado para verificar si el componente aún está montado
-
-        getOdontologos()
-            .then((data) => {
-                if (isMounted) {
-                    setOdontologos(data);
-                    console.log(data);
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-
+        let isMounted = true;
+        props.fetchOdontologos();
         return () => {
-            isMounted = false; // Marcar el componente como desmontado al limpiar el efecto
+            isMounted = false;
         };
-    }, []);
+    }, [props.odontologos]);
 
     return (
         <div >
-            <ul className='flex gap-2'>
-                {odontologos.map((odontologo) => {
+            <ul className='flex flex-wrap gap-2'>
+                {props.odontologos.map((odontologo) => {
                     return (
                         <div key={odontologo.id} className='flex flex-col bg-slate-950 text-white mb-3 w-48 h-32'>
                             <div className='flex gap-2'>

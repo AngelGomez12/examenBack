@@ -69,7 +69,6 @@ public class PacienteController {
             exisitstingPaciente.setEmail(pacienteNew.getEmail());
             exisitstingPaciente.setDNI(pacienteNew.getDNI());
             exisitstingPaciente.setFechaIngreso(pacienteNew.getFechaIngreso());
-            exisitstingPaciente.setOdontologo(pacienteNew.getOdontologo());
 
             Paciente updatePaciente = pacienteService.savePaciente(exisitstingPaciente);
 

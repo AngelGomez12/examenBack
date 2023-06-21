@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +32,8 @@ public class Odontologo {
     @Column
     @JsonProperty("matricula")
     private String matricula;
+
+    @OneToMany(mappedBy = "odontologo")
+    private List<Turno> turnos;
 
 }

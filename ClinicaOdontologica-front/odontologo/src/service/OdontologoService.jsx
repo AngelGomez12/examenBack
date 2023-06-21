@@ -29,3 +29,13 @@ export async function getOdontologoById(id) {
     console.error(error);
   }
 }
+
+export async function createOdontologo(odontologo) {
+  try {
+    const response = await axios.post(`${API_URL}/odontologos/newOdontologo`, odontologo);
+    odontologos = null;
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

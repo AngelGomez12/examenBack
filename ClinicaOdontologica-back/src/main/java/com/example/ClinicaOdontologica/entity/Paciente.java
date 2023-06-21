@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -39,9 +41,6 @@ public class Paciente {
     @JsonProperty("fechaIngreso")
     private LocalDate fechaIngreso;
 
-    @ManyToOne
-    @JoinColumn(name = "odontologo_id")
-    @JsonProperty("odontolgo")
-    private Odontologo odontologo;
-
+    @OneToMany(mappedBy = "paciente")
+    private List<Turno> turnos;
 }
