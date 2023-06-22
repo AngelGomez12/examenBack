@@ -1,5 +1,6 @@
 package com.example.ClinicaOdontologica.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "Paciente")
+@JsonIgnoreProperties("domicilio")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Paciente {
@@ -41,6 +43,7 @@ public class Paciente {
     @JsonProperty("fechaIngreso")
     private LocalDate fechaIngreso;
 
-    @OneToMany(mappedBy = "paciente")
-    private List<Turno> turnos;
+
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "paciente")
+    private Domicilio domicilio;
 }

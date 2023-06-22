@@ -1,10 +1,13 @@
 package com.example.ClinicaOdontologica.service.impl;
 
 import com.example.ClinicaOdontologica.entity.Paciente;
+import com.example.ClinicaOdontologica.repository.IDomicilioRepository;
 import com.example.ClinicaOdontologica.repository.IPacienteRepository;
 import com.example.ClinicaOdontologica.service.IPacienteService;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +15,15 @@ import java.util.Optional;
 @Service
 public class PacienteServiceImpl implements IPacienteService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     private final IPacienteRepository pacienteRepository;
+    private final IDomicilioRepository domicilioRepository;
 
-    public PacienteServiceImpl(IPacienteRepository pacienteRepository) {
+    public PacienteServiceImpl(EntityManager entityManager, IPacienteRepository pacienteRepository, IDomicilioRepository domicilioRepository) {
+        this.entityManager = entityManager;
         this.pacienteRepository = pacienteRepository;
+        this.domicilioRepository = domicilioRepository;
     }
 
 
@@ -31,10 +39,12 @@ public class PacienteServiceImpl implements IPacienteService {
 
     @Override
     public Paciente savePaciente(Paciente pacienteNew) {
-        if (pacienteNew != null) {
-            return pacienteRepository.save(pacienteNew);
+        Paciente savedPaciente = pacienteRepository.save(pacienteNew);
+        if (pacienteNew.getDomicilio() != null) {
+            pacienteNew.getDomicilio().setPaciente(savedPaciente);
+            domicilioRepository.save(pacienteNew.getDomicilio());
         }
-        return new Paciente();
+        return savedPaciente;
     }
 
     @Override

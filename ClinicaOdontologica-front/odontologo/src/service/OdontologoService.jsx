@@ -39,3 +39,23 @@ export async function createOdontologo(odontologo) {
     console.error(error);
   }
 }
+
+export async function deleteOdontologo(id) {
+  try {
+    const response = await axios.delete(`${API_URL}/odontologos/delete/${id}`);
+    odontologos = null;
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateOdontologo(id, odontologo) {
+  try {
+    const response = await axios.put(`${API_URL}/odontologos/update/${id}`, odontologo);
+    odontologos = null;
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

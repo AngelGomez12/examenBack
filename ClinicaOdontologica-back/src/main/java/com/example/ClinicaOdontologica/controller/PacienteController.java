@@ -1,14 +1,17 @@
 package com.example.ClinicaOdontologica.controller;
 
+import com.example.ClinicaOdontologica.entity.Domicilio;
 import com.example.ClinicaOdontologica.entity.Odontologo;
 import com.example.ClinicaOdontologica.entity.Paciente;
 import com.example.ClinicaOdontologica.service.IOdontologoService;
+import com.example.ClinicaOdontologica.service.impl.DomicilioServiceImpl;
 import com.example.ClinicaOdontologica.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +22,13 @@ public class PacienteController {
 
     @Autowired
     private PacienteServiceImpl pacienteService;
+    @Autowired
     private IOdontologoService odontologoService;
+    @Autowired
+    private DomicilioServiceImpl domicilioService;
 
 
+    @Transactional
     @GetMapping
     public List<Paciente> getAllPacientes() {
         List<Paciente> pacientes = pacienteService.findAllPacientes();
@@ -38,17 +45,24 @@ public class PacienteController {
 
     @PostMapping("/newPaciente")
     public Paciente createPaciente(@RequestBody Paciente newPaciente){
+        Domicilio domicilio = newPaciente.getDomicilio();
+        if (domicilio != null) {
+            Domicilio savedDomicilio = domicilioService.saveDomicilio(domicilio);
 
-        Paciente paciente = new Paciente();
-        paciente.setName(newPaciente.getName());
-        paciente.setLastName(newPaciente.getLastName());
-        paciente.setEmail(newPaciente.getEmail());
-        paciente.setDNI(newPaciente.getDNI());
-        paciente.setFechaIngreso(newPaciente.getFechaIngreso());
+            Paciente paciente = new Paciente();
+            paciente.setName(newPaciente.getName());
+            paciente.setLastName(newPaciente.getLastName());
+            paciente.setEmail(newPaciente.getEmail());
+            paciente.setDNI(newPaciente.getDNI());
+            paciente.setFechaIngreso(newPaciente.getFechaIngreso());
+            paciente.setDomicilio(savedDomicilio);
 
-        Paciente savedPaciente = pacienteService.savePaciente(newPaciente);
+            Paciente savedPaciente = pacienteService.savePaciente(paciente);
 
-        return savedPaciente;
+            return savedPaciente;
+        } else {
+            throw new IllegalArgumentException("El domicilio del paciente no puede ser nulo");
+        }
     }
 
     @DeleteMapping("/delete/{id}")

@@ -21,6 +21,7 @@ export const Form = (props) => {
         }).catch((error) => {
             console.error(error);
         });
+        e.target.reset();
     }
 
 
