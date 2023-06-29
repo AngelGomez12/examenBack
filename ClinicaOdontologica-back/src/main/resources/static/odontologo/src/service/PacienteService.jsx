@@ -16,3 +16,23 @@ export async function getPacientes() {
         console.error(error);
     }
 };
+
+export async function createPaciente(paciente) {
+    try {
+        const response = await axios.post(`${API_URL}/pacientes/newPaciente`, paciente);
+        pacientes = null;
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function deletePaciente(id) {
+    try {
+        const response = await axios.delete(`${API_URL}/pacientes/delete/${id}`);
+        pacientes = null;
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
