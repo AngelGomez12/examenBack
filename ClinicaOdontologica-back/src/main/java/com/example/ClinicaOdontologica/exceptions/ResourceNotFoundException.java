@@ -1,2 +1,7 @@
-package com.example.ClinicaOdontologica.exceptions;public class ResourceNotFoundException {
+package com.example.ClinicaOdontologica.exceptions;
+
+public class ResourceNotFoundException extends Exception{
+    public ResourceNotFoundException(String message){
+        super(message);
+    }
 }

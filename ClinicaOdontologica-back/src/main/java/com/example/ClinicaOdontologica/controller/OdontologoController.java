@@ -1,9 +1,12 @@
 package com.example.ClinicaOdontologica.controller;
 
 import com.example.ClinicaOdontologica.entity.Odontologo;
+import com.example.ClinicaOdontologica.exceptions.BadRequestException;
+import com.example.ClinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.ClinicaOdontologica.service.impl.OdontologoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,30 +33,23 @@ public class OdontologoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Odontologo> getOdontologoById(@PathVariable Long id){
-        return odontologoService.findOdontologoById(id);
+    public ResponseEntity<Object> getOdontologoById(@PathVariable Long id) throws ResourceNotFoundException {
+        return ResponseEntity.status(HttpStatus.OK).body(odontologoService.findOdontologoById(id));
     }
 
     @PostMapping("/newOdontologo")
-    public Odontologo createOdontolgo(@RequestBody Odontologo newOdontolgo){
-        Odontologo odontologo = new Odontologo();
-        odontologo.setId(newOdontolgo.getId());
-        odontologo.setName(newOdontolgo.getName());
-        odontologo.setLastName(newOdontolgo.getLastName());
-        odontologo.setMatricula(newOdontolgo.getMatricula());
-
-        Odontologo savedOdontologo = odontologoService.saveOdontologo(odontologo);
-
-        return ResponseEntity.ok(savedOdontologo).getBody();
+    public ResponseEntity<?> createOdontolgo(@RequestBody Odontologo newOdontolgo) throws BadRequestException {
+       return ResponseEntity.status(HttpStatus.CREATED).body(odontologoService.saveOdontologo(newOdontolgo));
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteOdontologo(@PathVariable Long id){
-        return odontologoService.deleteOdontologo(id);
+    public ResponseEntity<?> deleteOdontologo(@PathVariable Long id) throws ResourceNotFoundException{
+        odontologoService.deleteOdontologo(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateOdontologo(@PathVariable Long id, @RequestBody Odontologo odontologoNew) {
+    public ResponseEntity<String> updateOdontologo(@PathVariable Long id, @RequestBody Odontologo odontologoNew) throws BadRequestException, ResourceNotFoundException{
         Optional<Odontologo> existingOdontologoOptional = odontologoService.findOdontologoById(id);
 
         if (existingOdontologoOptional.isPresent()) {
@@ -65,7 +61,6 @@ public class OdontologoController {
             existingOdontologo.setMatricula(odontologoNew.getMatricula());
 
             Odontologo updatedOdontologo = odontologoService.saveOdontologo(existingOdontologo);
-
             return ResponseEntity.ok("Odontólogo actualizado con éxito.");
         } else {
             return ResponseEntity.notFound().build();

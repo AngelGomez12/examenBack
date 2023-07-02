@@ -1,6 +1,6 @@
 package com.example.ClinicaOdontologica.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,13 +9,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "Paciente")
-@JsonIgnoreProperties("domicilio")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Paciente {
@@ -43,7 +42,20 @@ public class Paciente {
     @JsonProperty("fechaIngreso")
     private LocalDate fechaIngreso;
 
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "paciente")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private Set<Turno> turnos;
+
+    public Paciente(String name, String lastName, String DNI, String email, LocalDate fechaIngreso, Domicilio domicilio) {
+        this.name = name;
+        this.lastName = lastName;
+        this.DNI = DNI;
+        this.email = email;
+        this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
+    }
 }

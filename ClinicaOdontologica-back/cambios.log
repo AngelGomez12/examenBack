@@ -1,0 +1,51 @@
+[2023-07-01 20:06:47] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:08:30] [ ERROR] [TurnoController:54] No se pudo crear el paciente
+[2023-07-01 20:16:27] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:17:06] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:20:07] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:20:07] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:20:07] [ INFO ] [OdontologoServiceImpl:69] Odontolgo actualizado con exito
+[2023-07-01 20:20:07] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:20:07] [ INFO ] [OdontologoServiceImpl:58] Odontólogo eliminado exitosamente.
+[2023-07-01 20:21:59] [ ERROR] [OdontologoServiceImpl:38] Error, no se encutra al odntolgo
+[2023-07-01 20:24:57] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:24:57] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:24:57] [ INFO ] [OdontologoServiceImpl:69] Odontolgo actualizado con exito
+[2023-07-01 20:24:57] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:24:57] [ INFO ] [OdontologoServiceImpl:58] Odontólogo eliminado exitosamente.
+[2023-07-01 20:26:00] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:26:00] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:26:00] [ INFO ] [OdontologoServiceImpl:69] Odontolgo actualizado con exito
+[2023-07-01 20:26:00] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:26:00] [ INFO ] [OdontologoServiceImpl:58] Odontólogo eliminado exitosamente.
+[2023-07-01 20:27:55] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 20:27:55] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:27:55] [ INFO ] [OdontologoServiceImpl:69] Odontolgo actualizado con exito
+[2023-07-01 20:27:56] [ INFO ] [OdontologoServiceImpl:35] Odontolgo encontrado
+[2023-07-01 20:27:56] [ INFO ] [OdontologoServiceImpl:58] Odontólogo eliminado exitosamente.
+[2023-07-01 20:55:13] [ ERROR] [TurnoController:54] No se pudo crear el paciente
+[2023-07-01 21:01:31] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:01:31] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:02:15] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:02:17] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:02:38] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:03:24] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:05:19] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:05:23] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:07:31] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:07:31] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:08:30] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:08:30] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:09:22] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:09:22] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:09:24] [ INFO ] [TurnoServiceImpl:75] Exito, turno encontrado
+[2023-07-01 21:09:24] [ INFO ] [TurnoServiceImpl:108] Exito, turno eliminado
+[2023-07-01 21:09:24] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:09:24] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:09:35] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:11:00] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 21:11:56] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:14:24] [ INFO ] [OdontologoServiceImpl:46] Odontologo creado con exito
+[2023-07-01 21:14:51] [ ERROR] [TurnoController:54] No se pudo crear el paciente
+[2023-07-01 21:15:06] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados
+[2023-07-01 21:16:09] [ INFO ] [TurnoServiceImpl:65] Exito, Turnos encontrados

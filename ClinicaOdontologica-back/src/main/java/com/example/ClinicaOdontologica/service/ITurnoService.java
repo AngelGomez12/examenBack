@@ -1,20 +1,22 @@
 package com.example.ClinicaOdontologica.service;
 
-import com.example.ClinicaOdontologica.entity.Paciente;
+import com.example.ClinicaOdontologica.DTO.TurnoDTO;
 import com.example.ClinicaOdontologica.entity.Turno;
+import com.example.ClinicaOdontologica.exceptions.BadRequestException;
+import com.example.ClinicaOdontologica.exceptions.ResourceNotFoundException;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 public interface ITurnoService {
 
-    List<Turno> findAllTurnos();
+    Collection<TurnoDTO> findAllTurnos();
 
-    Optional<Turno> findTurnoById(Long id);
+    Optional<TurnoDTO> findTurnoById(Long id) throws ResourceNotFoundException, BadRequestException;
 
-    Turno saveTurno(Turno turnoNew);
+    Turno saveTurno(TurnoDTO turnoNew) throws ResourceNotFoundException, BadRequestException;
 
-    String deleleteTurno(Long id);
+    void deleteTurno(Long id) throws ResourceNotFoundException, BadRequestException;
 
-    Turno uptdateTurno(Turno turnoNew);
+    TurnoDTO uptdateTurno(TurnoDTO turnoNew) throws ResourceNotFoundException,BadRequestException;
 }

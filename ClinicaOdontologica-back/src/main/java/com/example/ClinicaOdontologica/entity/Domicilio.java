@@ -21,8 +21,13 @@ public class Domicilio {
     private int numero;
     private String calle;
     private String localidad;
-    private String provincia;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Paciente paciente;
+    public Domicilio(int numero, String calle, String localidad, String provincia) {
+        this.numero = numero;
+        this.calle = calle;
+        this.localidad = localidad;
+        this.provincia = provincia;
+    }
+
+    private String provincia;
 }

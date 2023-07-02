@@ -1,8 +1,10 @@
 package com.example.ClinicaOdontologica.service.impl;
 
+import com.example.ClinicaOdontologica.entity.Domicilio;
 import com.example.ClinicaOdontologica.entity.Paciente;
 import com.example.ClinicaOdontologica.repository.IDomicilioRepository;
 import com.example.ClinicaOdontologica.repository.IPacienteRepository;
+import com.example.ClinicaOdontologica.service.IDomicilioService;
 import com.example.ClinicaOdontologica.service.IPacienteService;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +20,12 @@ public class PacienteServiceImpl implements IPacienteService {
     @PersistenceContext
     private EntityManager entityManager;
     private final IPacienteRepository pacienteRepository;
-    private final IDomicilioRepository domicilioRepository;
+    private final IDomicilioService domicilioService;
 
-    public PacienteServiceImpl(EntityManager entityManager, IPacienteRepository pacienteRepository, IDomicilioRepository domicilioRepository) {
+    public PacienteServiceImpl(EntityManager entityManager, IPacienteRepository pacienteRepository, IDomicilioRepository domicilioRepository, IDomicilioService domicilioService) {
         this.entityManager = entityManager;
         this.pacienteRepository = pacienteRepository;
-        this.domicilioRepository = domicilioRepository;
+        this.domicilioService = domicilioService;
     }
 
 
@@ -39,12 +41,11 @@ public class PacienteServiceImpl implements IPacienteService {
 
     @Override
     public Paciente savePaciente(Paciente pacienteNew) {
-        Paciente savedPaciente = pacienteRepository.save(pacienteNew);
         if (pacienteNew.getDomicilio() != null) {
-            pacienteNew.getDomicilio().setPaciente(savedPaciente);
-            domicilioRepository.save(pacienteNew.getDomicilio());
+            Domicilio savedDomicilio = domicilioService.saveDomicilio(pacienteNew.getDomicilio());
+            pacienteNew.setDomicilio(savedDomicilio);
         }
-        return savedPaciente;
+        return pacienteRepository.save(pacienteNew);
     }
 
     @Override

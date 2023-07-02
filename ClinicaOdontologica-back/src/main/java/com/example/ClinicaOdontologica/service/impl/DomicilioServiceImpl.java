@@ -1,8 +1,10 @@
 package com.example.ClinicaOdontologica.service.impl;
 
 import com.example.ClinicaOdontologica.entity.Domicilio;
+import com.example.ClinicaOdontologica.entity.Paciente;
 import com.example.ClinicaOdontologica.repository.IDomicilioRepository;
 import com.example.ClinicaOdontologica.service.IDomicilioService;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.Optional;
 
 @Service
 public class DomicilioServiceImpl implements IDomicilioService {
+
+    private final static Logger log = Logger.getLogger(DomicilioServiceImpl.class);
 
     private final IDomicilioRepository domicilioRepository;
 

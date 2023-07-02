@@ -1,11 +1,11 @@
 package com.example.ClinicaOdontologica.controller;
 
-import com.example.ClinicaOdontologica.entity.Domicilio;
-import com.example.ClinicaOdontologica.entity.Odontologo;
 import com.example.ClinicaOdontologica.entity.Paciente;
+import com.example.ClinicaOdontologica.exceptions.BadRequestException;
 import com.example.ClinicaOdontologica.service.IOdontologoService;
 import com.example.ClinicaOdontologica.service.impl.DomicilioServiceImpl;
 import com.example.ClinicaOdontologica.service.impl.PacienteServiceImpl;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +20,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 public class PacienteController {
 
+    private final static Logger log = Logger.getLogger(TurnoController.class);
     @Autowired
     private PacienteServiceImpl pacienteService;
     @Autowired
@@ -44,24 +45,13 @@ public class PacienteController {
     }
 
     @PostMapping("/newPaciente")
-    public Paciente createPaciente(@RequestBody Paciente newPaciente){
-        Domicilio domicilio = newPaciente.getDomicilio();
-        if (domicilio != null) {
-            Domicilio savedDomicilio = domicilioService.saveDomicilio(domicilio);
-
-            Paciente paciente = new Paciente();
-            paciente.setName(newPaciente.getName());
-            paciente.setLastName(newPaciente.getLastName());
-            paciente.setEmail(newPaciente.getEmail());
-            paciente.setDNI(newPaciente.getDNI());
-            paciente.setFechaIngreso(newPaciente.getFechaIngreso());
-            paciente.setDomicilio(savedDomicilio);
-
-            Paciente savedPaciente = pacienteService.savePaciente(paciente);
-
-            return savedPaciente;
-        } else {
-            throw new IllegalArgumentException("El domicilio del paciente no puede ser nulo");
+    public Paciente createPaciente(@RequestBody Paciente newPaciente) throws BadRequestException{
+        try {
+            return pacienteService.savePaciente(newPaciente);
+        } catch (IllegalArgumentException e){
+           throw new BadRequestException("Error al crear el paciente: " + e.getMessage());
+        } finally {
+            log.error("No se pudo crear el paciente");
         }
     }
 
@@ -71,7 +61,7 @@ public class PacienteController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updatePaciente(@PathVariable Long id, @RequestBody Paciente pacienteNew){
+    public ResponseEntity<String> updatePaciente(@PathVariable Long id, @RequestBody Paciente pacienteNew) throws BadRequestException {
         Optional<Paciente> existingPacienteOptional = pacienteService.findPacienteById(id);
 
         if (existingPacienteOptional.isPresent()){
@@ -88,7 +78,7 @@ public class PacienteController {
 
             return ResponseEntity.ok("Paciente actualizado con exito.");
         } else {
-            return ResponseEntity.notFound().build();
+            throw new BadRequestException("No se encontro el paciente");
         }
     }
 
