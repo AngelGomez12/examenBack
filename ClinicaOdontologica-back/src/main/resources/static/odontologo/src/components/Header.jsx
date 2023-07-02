@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom/dist'
 
 export const Header = () => {
     return (
-        <div className='bg-black text-white h-14'>
-            <Link to="/">Odontologos</Link>
-            <Link to="/pacientes">Pacientes</Link>
-            <Link to="/turnos">Turnos</Link>
+        <div className='flex justify-center items-center gap-4 text-2xl bg-black text-white h-14'>
+            <Link className='hover:underline' to="/">Odontologos</Link>
+            <Link className='hover:underline' to="/pacientes">Pacientes</Link>
+            <Link className='hover:underline' to="/turnos">Turnos</Link>
         </div>
     )
 }
